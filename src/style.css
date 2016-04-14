@@ -4,10 +4,35 @@ body {
  color: white;
 }
 
+/* Navigation */
+
+.navigation {
+  background-color: darkblue;
+  height: 3rem;
+  border-bottom: 1px solid #aaa;
+}
+
+.navigation ul {
+  display: inline-block;
+  text-decoration: none;
+}
+
+.navigation li {
+  display: inline-block;
+  text-decoration: none;
+}
+
+.navigation a {
+  padding: 10px;
+  color: white;
+  text-decoration: none;
+}
+
 /* Voting Screen */
 
 .voting {
  position: fixed;
+ margin-top: 3rem;
  top: 0;
  left: 0;
  right: 0;
@@ -59,6 +84,7 @@ body {
 
 .results {
  position: fixed;
+ margin-top: 3rem;
  top: 0;
  left: 0;
  right: 0;

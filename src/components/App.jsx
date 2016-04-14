@@ -1,7 +1,11 @@
 import React from 'react';
+import { NavigationContainer } from '../components/Navigation';
 
-export default React.createClass({
+export default React.createClass ({
   render(){
-    return this.props.children;
+    return <div>
+      <NavigationContainer />
+      { this.props.children }
+    </div>
   }
-})
+});

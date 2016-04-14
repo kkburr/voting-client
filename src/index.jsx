@@ -8,22 +8,23 @@ import { setState } from './action_creators';
 import remoteActionMiddleware from './remote_action_middleware';
 import reducer from './reducer';
 import App from './components/App';
-import { VotingContainer } from './components/Voting';
 import { ResultsContainer } from './components/Results';
+import { VotingContainer } from './components/Voting';
+import { Navigation } from './components/Navigation';
+
 
 require('./style.css');
 
-
 const socket = io(`${location.protocol}//${location.hostname}:8090`);
-socket.on('state', state => {
-  store.dispatch(setState(state))
-});
-
 const createStoreWithMiddleware = applyMiddleware(
   remoteActionMiddleware(socket)
 )(createStore);
-
 const store = createStoreWithMiddleware(reducer);
+
+socket.on('state', state => {
+  store.dispatch(setState(state));
+});
+
 
 const routes = <Route component={ App }>
   <Route path="/" component={ VotingContainer } />
@@ -32,7 +33,9 @@ const routes = <Route component={ App }>
 
 ReactDOM.render(
   <Provider store={ store }>
-    <Router history={ hashHistory }>{ routes }</Router>
+    <Router history={ hashHistory }>
+      { routes }
+    </Router>
   </Provider>,
   document.getElementById('app')
 );

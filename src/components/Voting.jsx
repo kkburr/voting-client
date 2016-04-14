@@ -8,20 +8,22 @@ import * as actionCreators from '../action_creators';
 export const Voting = React.createClass({
   mixins: [PureRenderMixin],
   render: function() {
-    return <div>
-      { this.props.winner ?
+    return this.props.winner ?
         <Winner ref="winner" winner={ this.props.winner }/> :
-        <Vote {...this.props } /> }
-    </div>
+        <Vote { ...this.props } />
   }
 });
 
+
 function mapStateToProps(state) {
+  const nextTwoEntries = state.getIn(['vote', 'pair']) ||
+                         state.get('entries') &&
+                         state.get('entries').take(2);
   return {
-    pair: state.getIn(['vote', 'pair']),
+    pair: nextTwoEntries,
     hasVoted: state.get('hasVoted'),
     winner: state.get('winner')
-  };
+  }
 }
 
 export const VotingContainer = connect(
