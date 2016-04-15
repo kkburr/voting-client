@@ -7,21 +7,34 @@ import * as actionCreators from '../action_creators';
 
 export const Voting = React.createClass({
   mixins: [PureRenderMixin],
+
+  addContent: function() {
+    if (this.props.winner) {
+      return <Winner ref="winner" winner={ this.props.winner }/>
+    } else if (!this.props.pair) {
+       return <div className="start-div">
+        <button ref="next"
+                 className="start-vote"
+                 onClick={this.props.next}>
+          Start the Voting!
+        </button>
+      </div>
+    } else {
+      return <Vote { ...this.props } />
+    }
+  },
+
   render: function() {
-    return this.props.winner ?
-        <Winner ref="winner" winner={ this.props.winner }/> :
-        <Vote { ...this.props } />
+    return <div>
+      { this.addContent() }
+    </div>
   }
 });
 
-
 function mapStateToProps(state) {
-  const nextTwoEntries = state.getIn(['vote', 'pair']) ||
-                         state.get('entries') &&
-                         state.get('entries').take(2);
   return {
-    pair: nextTwoEntries,
-    hasVoted: state.get('hasVoted'),
+    pair: state.getIn(['vote', 'pair']),
+    hasVoted: state.getIn(['myVote', 'entry']),
     winner: state.get('winner')
   }
 }

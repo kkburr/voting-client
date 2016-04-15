@@ -14,7 +14,6 @@ export function vote(entry) {
 }
 
 export function next() {
-  console.log("next");
   return {
     meta: {remote: true},
     type: 'NEXT'

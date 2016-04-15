@@ -141,9 +141,29 @@ body {
  flex: 1;
 }
 
+/*Start Vote View*/
+.start-div {
+  text-align: center;
+  height: auto;
+}
+
+.start-vote {
+  border: none;
+  background-color: initial;
+  font-size: 4rem;
+  text-align: center;
+}
+.start-vote:hover {
+  color: hotpink;
+}
+
 /* Winner View */
 
+
 .winner {
- font-size: 4rem;
- text-align: center;
+  border: 0;
+  background-color: black;
+  color: #aaa;
+  font-size: 4rem;
+  text-align: center;
 }
