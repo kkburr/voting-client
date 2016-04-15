@@ -7,10 +7,12 @@ function setState(state, newState) {
 function vote(state, entry) {
   const currentRound = state.getIn(['vote', 'round']);
   const currentPair = state.getIn(['vote', 'pair']);
-  if (currentPair && currentPair.includes(entry)) {
+  console.log("wtf",entry);
+  if (currentPair && currentPair.includes(entry['vote'])) {
     return state.set('myVote', Map({
       round: currentRound,
-      entry
+      vote: entry['vote'],
+      voterId: entry['voterId']
     }));
   } else {
     return state;
