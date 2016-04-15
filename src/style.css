@@ -159,11 +159,8 @@ body {
 
 /* Winner View */
 
-
 .winner {
   border: 0;
-  background-color: black;
-  color: #aaa;
   font-size: 4rem;
   text-align: center;
 }
